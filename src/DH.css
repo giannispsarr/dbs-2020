@@ -1,0 +1,23 @@
+.abc{
+    margin-top: 250px;
+}
+
+.button1 {
+    position: relative;
+    font-size: 22px;
+    padding: 20px 80px;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    background-color: rgb(42, 40, 54);
+    color: white;
+    outline: 0;
+    outline-offset: 0;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+
+.button1:hover {
+    background-color: rgb(89, 71, 167);
+    color: white;
+  }
