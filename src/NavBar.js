@@ -21,6 +21,7 @@ class NavBar extends React.Component {
                         <Nav.Link exact href="/users">Users</Nav.Link>
                         <Nav.Link exact href="/data">Edit Products</Nav.Link>
                         <Nav.Link exact href="/general">General Data</Nav.Link>
+                        <Nav.Link exact href="/per_store">Data Per Store</Nav.Link>
                     </Nav>
                 </Navbar>
             </div >

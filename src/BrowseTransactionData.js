@@ -1,36 +1,190 @@
 import React, { Component } from 'react';
 import { DropdownButton, Dropdown } from 'react-bootstrap';
-import Button from 'react-bootstrap'
 import { Route, Link } from 'react-router-dom';
-import Shop_1 from './Shops/Shop_1';
-import Shop_2 from './Shops/Shop_2';
-import Shop_3 from './Shops/Shop_3';
-import Shop_4 from './Shops/Shop_4';
-import Shop_5 from './Shops/Shop_5';
-import Shop_6 from './Shops/Shop_6';
-import Shop_7 from './Shops/Shop_7';
-import Shop_8 from './Shops/Shop_8';
-import Shop_9 from './Shops/Shop_9';
-import Shop_10 from './Shops/Shop_10';
+import Form from 'react-bootstrap/Form';
+import { Col, Row, FormControl } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Table from 'react-bootstrap/Table';
 import './BTD.css';
+import './Shop_1.css';
 
 
 class BrowseTransctionData extends React.Component {
     render() {
         return (
             <div>
-                <DropdownButton variant="success" bsPrefix='dropbtn' id="dropdown-basic-button" title="Select Shop">
-                    <Dropdown.Item href="/transactions/shop1">Shop #1</Dropdown.Item>
-                    <Dropdown.Item href="/transactions/shop2">Shop #2</Dropdown.Item>
-                    <Dropdown.Item href="/transactions/shop3">Shop #3</Dropdown.Item>
-                    <Dropdown.Item href="/transactions/shop4">Shop #4</Dropdown.Item>
-                    <Dropdown.Item href="/transactions/shop5">Shop #5</Dropdown.Item>
-                    <Dropdown.Item href="/transactions/shop6">Shop #6</Dropdown.Item>
-                    <Dropdown.Item href="/transactions/shop7">Shop #7</Dropdown.Item>
-                    <Dropdown.Item href="/transactions/shop8">Shop #8</Dropdown.Item>
-                    <Dropdown.Item href="/transactions/shop9">Shop #9</Dropdown.Item>
-                    <Dropdown.Item href="/transactions/shop10">Shop #10</Dropdown.Item>
-                </DropdownButton>
+                <Row>
+                    <Col>
+                        <Form>
+                            <Form.Group controlId="exampleForm.ControlSelect1" bsPrefix='category'>
+                                <Form.Label>Select Shop</Form.Label>
+                                <Form.Control as="select">
+                                    <option>Shop 1</option>
+                                    <option>Shop 2</option>
+                                    <option>Shop 3</option>
+                                    <option>Shop 4</option>
+                                    <option>Shop 5</option>
+                                    <option>Shop 6</option>
+                                    <option>Shop 7</option>
+                                    <option>Shop 8</option>
+                                    <option>Shop 9</option>
+                                    <option>Shop 10</option>
+                                </Form.Control>
+                            </Form.Group>
+                            <Form.Group bsPrefix='group1'>
+                                <Form.Row>
+                                    <Form.Label>Units bought:</Form.Label>
+                                    <Col>
+                                        <Form.Check
+                                            type="radio"
+                                            label=">"
+                                            name="formHorizontalRadios"
+                                            id="formHorizontalRadios1"
+                                        />
+                                        <Form.Check
+                                            type="radio"
+                                            label="="
+                                            name="formHorizontalRadios"
+                                            id="formHorizontalRadios2"
+                                        />
+                                        <Form.Check
+                                            type="radio"
+                                            label="<"
+                                            name="formHorizontalRadios"
+                                            id="formHorizontalRadios2"
+                                        />
+                                    </Col>
+                                    <Col>
+                                        <FormControl placeholder='Units Bought' />
+                                    </Col>
+                                </Form.Row>
+                            </Form.Group>
+                            <Form.Group bsPrefix='group1'>
+                                <Form.Row>
+                                    <Form.Label>Total amount:</Form.Label>
+                                    <Col>
+                                        <Form.Check
+                                            type="radio"
+                                            label=">"
+                                            name="formHorizontalRadios"
+                                            id="formHorizontalRadios1"
+                                        />
+                                        <Form.Check
+                                            type="radio"
+                                            label="="
+                                            name="formHorizontalRadios"
+                                            id="formHorizontalRadios2"
+                                        />
+                                        <Form.Check
+                                            type="radio"
+                                            label="<"
+                                            name="formHorizontalRadios"
+                                            id="formHorizontalRadios2"
+                                        />
+                                    </Col>
+                                    <Col>
+                                        <FormControl placeholder='Total amount' />
+                                    </Col>
+                                </Form.Row>
+                            </Form.Group>
+                            <Form.Group controlId="exampleForm.ControlSelect1" bsPrefix='category'>
+                                <Form.Label>Product Category</Form.Label>
+                                <Form.Control as="select">
+                                    <option>Category #1</option>
+                                    <option>Category #2</option>
+                                    <option>Category #3</option>
+                                    <option>Category #4</option>
+                                    <option>Category #5</option>
+                                </Form.Control>
+                            </Form.Group>
+                            <Form.Group bsPrefix='group2'>
+                                <Form.Row>
+                                    <Form.Label as="legend" column sm={2}>
+                                        Paid with:
+                        </Form.Label>
+                                    <Col sm={10}>
+                                        <Form.Check
+                                            type="radio"
+                                            label="Cash"
+                                            name="formHorizontalRadios"
+                                            id="formHorizontalRadios1"
+                                        />
+                                        <Form.Check
+                                            type="radio"
+                                            label="Credit/Debit Card"
+                                            name="formHorizontalRadios"
+                                            id="formHorizontalRadios2"
+                                        />
+                                    </Col>
+                                </Form.Row>
+                            </Form.Group>
+                            <Form.Group bsPrefix='group2'>
+                                <Form.Label>From:</Form.Label>
+                                <Form.Row>
+                                    <Col>
+                                        <Form.Control bsPrefix='datecell' placeholder="Day" />
+                                    </Col>
+                        /
+                        <Col>
+                                        <Form.Control bsPrefix='datecell' placeholder="Month" />
+                                    </Col>
+                        /
+                        <Col>
+                                        <Form.Control bsPrefix='datecell' placeholder="Year" />
+                                    </Col>
+                                </Form.Row>
+                            </Form.Group>
+                            <Form.Group bsPrefix='group2'>
+                                <Form.Label>To:</Form.Label>
+                                <Form.Row>
+                                    <Col>
+                                        <Form.Control bsPrefix='datecell' placeholder="Day" />
+                                    </Col>
+                        /
+                        <Col>
+                                        <Form.Control bsPrefix='datecell' placeholder="Month" />
+                                    </Col>
+                        /
+                        <Col>
+                                        <Form.Control bsPrefix='datecell' placeholder="Year" />
+                                    </Col>
+                                </Form.Row>
+                            </Form.Group>
+                            <Button variant="success" bsPrefix='button' type="submit">Submit</Button>
+                        </Form>
+                    </Col>
+                    <Col>
+                        <Table striped bordered hover>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td colSpan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                            </tbody>
+                        </Table>
+                    </Col>
+                </Row>
             </div>
         )
     }
