@@ -19,9 +19,11 @@ class NavBar extends React.Component {
                     <Nav className="mr-auto">
                         <Nav.Link exact href="/transactions">Browse Transactions</Nav.Link>
                         <Nav.Link exact href="/users">Users</Nav.Link>
-                        <Nav.Link exact href="/data">Edit Products</Nav.Link>
+                        <Nav.Link exact href="/data">Edit Data</Nav.Link>
                         <Nav.Link exact href="/general">General Data</Nav.Link>
                         <Nav.Link exact href="/per_store">Data Per Store</Nav.Link>
+                        <Nav.Link exact href="/view1">View Customers</Nav.Link>
+                        <Nav.Link exact href="/view2">View Sellings</Nav.Link>
                     </Nav>
                 </Navbar>
             </div >

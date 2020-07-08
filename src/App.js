@@ -8,12 +8,17 @@ import GeneralData from './GeneralData';
 import NavBar from './NavBar';
 import { Route, Link } from 'react-router-dom';
 import User_1 from './Users/User_1';
-import User_2 from './Users/User_2';
-import User_3 from './Users/User_3';
 import ClientHandler from './ClientHandler';
-import ShopHandler from './ShopHandler';
 import ProductHandler from './ProductHandler';
 import DataPerStore from './DataPerStore';
+import View1 from './View1';
+import View2 from './View2';
+import InsertProduct from './InsertProduct.js';
+import UpdateProduct from './UpdateProduct.js';
+import DeleteProduct from './DeleteProduct.js';
+import InsertClient from './InsertClient.js';
+import UpdateClient from './UpdateClient.js';
+import DeleteClient from './DeleteClient.js';
 
 function App() {
   return (
@@ -25,12 +30,17 @@ function App() {
       <Route exact path="/data" component={DataHandler} />
       <Route exact path="/general" component={GeneralData} />
       <Route exact path="/per_store" component={DataPerStore} />
+      <Route exact path="/view1" component={View1} />
+      <Route exact path="/view2" component={View2} />
       <Route exact path="/users/user1" component={User_1} />
-      <Route exact path="/users/user2" component={User_2} />
-      <Route exact path="/users/user3" component={User_3} />
       <Route exact path="/data/client" component={ClientHandler} />
-      <Route exact path="/data/shop" component={ShopHandler} />
+      <Route exact path="/data/client/insert" component={InsertClient} />
+      <Route exact path="/data/client/update" component={UpdateClient} />
+      <Route exact path="/data/client/delete" component={DeleteClient} />
       <Route exact path="/data/product" component={ProductHandler} />
+      <Route exact path="/data/product/insert" component={InsertProduct} />
+      <Route exact path="/data/product/update" component={UpdateProduct} />
+      <Route exact path="/data/product/delete" component={DeleteProduct} />
     </div>
   );
 }

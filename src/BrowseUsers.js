@@ -2,24 +2,55 @@ import React, { Component } from 'react';
 import { DropdownButton, Dropdown } from 'react-bootstrap';
 import { Col, Row, FormControl } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-import { Route, Link } from 'react-router-dom';
+import { Route, Link, Redirect } from 'react-router-dom';
 import User_1 from './Users/User_1';
-import User_2 from './Users/User_2';
-import User_3 from './Users/User_3';
+import Form from 'react-bootstrap/Form';
 import './BU.css';
 
 class BrowseUsers extends React.Component {
 
+    state = {
+        redirect: false,
+        page: undefined
+    }
+
+    getUser = async (e) => {
+        if (e) e.preventDefault();
+        const user = e.target.elements.user.value;
+        this.setState({
+            redirect: true,
+            page: user
+        })
+        console.log(user);
+    }
+
     render() {
-        return (
-            <div>
-                <DropdownButton variant="success" bsPrefix='dropbtn' id="dropdown-basic-button" title="Select User">
-                    <Dropdown.Item href="/users/user1">User #1</Dropdown.Item>
-                    <Dropdown.Item href="/users/user2">User #2</Dropdown.Item>
-                    <Dropdown.Item href="/users/user3">User #3</Dropdown.Item>
-                </DropdownButton>
-            </div>
-        )
+        const redirect = this.state.redirect;
+        const user1 = this.state.page;
+        if (redirect === true) {
+            return (<Redirect to='/users/user1' />)
+        } else {
+            return (
+                <div>
+                    <Form onSubmit={this.getUser}>
+                        <Form.Group controlId="exampleForm.ControlSelect1" bsPrefix='category'>
+                            <Form.Label>Select User</Form.Label>
+                            <Form.Control as="select" name='user'>
+                                <option>User 1</option>
+                                <option>User 2</option>
+                                <option>User 3</option>
+                                <option>User 4</option>
+                                <option>User 5</option>
+                                <option>User 6</option>
+                                <option>User 7</option>
+                                <option>User 8</option>
+                            </Form.Control>
+                        </Form.Group>
+                        <Button variant="success" bsPrefix='dropbtn' type="submit">Submit</Button>
+                    </Form>
+                </div>
+            )
+        }
     }
 }
 

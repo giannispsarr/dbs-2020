@@ -12,9 +12,6 @@ class DataHandler extends React.Component {
                             <Button variant="success" bsPrefix='button1' href="/data/client">Client data</Button>
                         </Col>
                         <Col>
-                            <Button variant="success" bsPrefix='button1' href="/data/shop">Shop data</Button>
-                        </Col>
-                        <Col>
                             <Button variant="success" bsPrefix='button1' href="/data/product">Product data</Button>
                         </Col>
                     </Row>

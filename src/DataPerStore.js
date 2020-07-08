@@ -17,7 +17,19 @@ class DataPerStore extends React.Component {
         height: 350
     }
 
-    handleSubmit(event) {
+    getDataPerStore = async (e) => {
+        if (e) e.preventDefault();
+        const shopid = e.target.elements.shopid.value;
+        console.log(shopid);
+        const api_call = await fetch('http://localhost:3000/perstore',
+            {
+                method: 'POST',
+                datastoreid: shopid
+            });
+        if (api_call.ok) {
+            const data = await api_call.json();
+            console.log(data);
+        } else { console.log('malakia'); }
         this.setState({
             barData1: {
                 labels: ['King size OCBs-Chips', 'Condoms-Lube', 'Pork-Pitta', 'Shampoo-Sponge', 'Fruit-Veggies'],
@@ -62,7 +74,6 @@ class DataPerStore extends React.Component {
                 }]
             }
         })
-        event.preventDefault();
     }
 
     render() {
@@ -70,10 +81,10 @@ class DataPerStore extends React.Component {
             <div>
                 <Row>
                     <Col>
-                        <Form onSubmit={this.handleSubmit}>
+                        <Form onSubmit={this.getDataPerStore}>
                             <Form.Group controlId="exampleForm.ControlSelect1" bsPrefix='category'>
                                 <Form.Label>Select Shop</Form.Label>
-                                <Form.Control as="select">
+                                <Form.Control as="select" name='shopid'>
                                     <option>Shop 1</option>
                                     <option>Shop 2</option>
                                     <option>Shop 3</option>

@@ -8,19 +8,16 @@ class ClientHandler extends React.Component {
     render() {
         return (
             <div>
-                <Container>
+                <Container bsPrefix='abc'>
                     <Row>
                         <Col>
-                            <Form>
-                                <Form.Group controlId="exampleForm.ControlSelect1" bsPrefix='category'>
-                                    <Form.Label>Choose action</Form.Label>
-                                    <Form.Control as="select">
-                                        <option>Insert New Data</option>
-                                        <option>Edit Existing Data</option>
-                                        <option>Delete Data</option>
-                                    </Form.Control>
-                                </Form.Group>
-                            </Form>
+                            <Button variant="success" bsPrefix='button1' href="/data/client/insert">Insert Client</Button>
+                        </Col>
+                        <Col>
+                            <Button variant="success" bsPrefix='button1' href="/data/client/update">Update Client</Button>
+                        </Col>
+                        <Col>
+                            <Button variant="success" bsPrefix='button1' href="/data/client/delete">Delete Client</Button>
                         </Col>
                     </Row>
                 </Container>
