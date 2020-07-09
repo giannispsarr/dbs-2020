@@ -17,6 +17,20 @@ class BrowseUsers extends React.Component {
     getUser = async (e) => {
         if (e) e.preventDefault();
         const user = e.target.elements.user.value;
+        console.log('prin skata');
+        const api_call = await fetch(`http://localhost:3000/users`,
+            {
+                method: 'POST',
+                body: JSON.stringify({
+                    userid: user
+                })
+            });
+        console.log('skata');
+        if (api_call.ok) {
+            console.log('dyo skata');
+            const data = await api_call.json();
+            console.log(data);
+        }
         this.setState({
             redirect: true,
             page: user

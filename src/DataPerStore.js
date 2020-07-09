@@ -24,8 +24,11 @@ class DataPerStore extends React.Component {
         const api_call = await fetch('http://localhost:3000/perstore',
             {
                 method: 'POST',
-                datastoreid: shopid
+                body: JSON.stringify({
+                    datastoreid: shopid
+                })
             });
+
         if (api_call.ok) {
             const data = await api_call.json();
             console.log(data);
@@ -85,16 +88,16 @@ class DataPerStore extends React.Component {
                             <Form.Group controlId="exampleForm.ControlSelect1" bsPrefix='category'>
                                 <Form.Label>Select Shop</Form.Label>
                                 <Form.Control as="select" name='shopid'>
-                                    <option>Shop 1</option>
-                                    <option>Shop 2</option>
-                                    <option>Shop 3</option>
-                                    <option>Shop 4</option>
-                                    <option>Shop 5</option>
-                                    <option>Shop 6</option>
-                                    <option>Shop 7</option>
-                                    <option>Shop 8</option>
-                                    <option>Shop 9</option>
-                                    <option>Shop 10</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
                                 </Form.Control>
                             </Form.Group>
                             <Button variant="success" bsPrefix='button' type="submit">Submit</Button>
