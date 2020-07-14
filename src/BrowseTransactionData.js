@@ -13,32 +13,54 @@ class BrowseTransctionData extends React.Component {
 
     getTransactionData = async (e) => {
         if (e) e.preventDefault();
-        const shopid = e.target.elements.shopid.value;
-        const ub1 = e.target.elements.ub1.value;
-        const ub2 = e.target.elements.ub2.value;
-        const ta1 = e.target.elements.ta1.value;
-        const ta2 = e.target.elements.ta2.value;
-        const category = e.target.elements.category.value;
-        const payment = e.target.elements.payment.value;
+        const storeid = parseInt(e.target.elements.shopid.value, 10);
+        const minquan = parseInt(e.target.elements.ub1.value, 10);
+        const maxquan = parseInt(e.target.elements.ub2.value, 10);
+        const mintot_cost = parseInt(e.target.elements.ta1.value, 10);
+        const maxtot_cost = parseInt(e.target.elements.ta2.value, 10);
+        const tempcate = e.target.elements.category.value;
+        const payway = e.target.elements.payment.value;
         const fday = e.target.elements.fday.value;
         const fmonth = e.target.elements.fmonth.value;
         const fyear = e.target.elements.fyear.value;
         const tday = e.target.elements.tday.value;
         const tmonth = e.target.elements.tmonth.value;
         const tyear = e.target.elements.tyear.value;
-        console.log(shopid);
-        console.log(ub1);
-        console.log(ub2);
-        console.log(ta1);
-        console.log(ta2);
-        console.log(category);
-        console.log(payment);
+        const mindate = `${fyear}-${fmonth}-${fday}`;
+        const maxdate = `${tyear}-${tmonth}-${tday}`;
+        console.log(storeid);
+        console.log(minquan);
+        console.log(maxquan);
+        console.log(mintot_cost);
+        console.log(maxtot_cost);
+        console.log(tempcate);
+        console.log(payway);
         console.log(fday);
         console.log(fmonth);
         console.log(fyear);
         console.log(tday);
         console.log(tmonth);
         console.log(tyear);
+        const api_call = await fetch('http://localhost:3000/transactions',
+            {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ storeid: storeid },
+                    { minquan: minquan },
+                    { mixquan: maxquan },
+                    { mintot_cost: mintot_cost },
+                    { maxtot_cost: maxtot_cost },
+                    { tempcate: tempcate },
+                    { payway: payway },
+                    { mindate: mindate },
+                    { maxdate: maxdate })
+            });
+        if (api_call.ok) {
+            const data = await api_call.json();
+            console.log(data);
+        }
     }
 
     render() {
@@ -50,56 +72,49 @@ class BrowseTransctionData extends React.Component {
                             <Form.Group controlId="exampleForm.ControlSelect1" bsPrefix='category'>
                                 <Form.Label>Select Shop</Form.Label>
                                 <Form.Control as="select" name='shopid'>
-                                    <option>Shop 1</option>
-                                    <option>Shop 2</option>
-                                    <option>Shop 3</option>
-                                    <option>Shop 4</option>
-                                    <option>Shop 5</option>
-                                    <option>Shop 6</option>
-                                    <option>Shop 7</option>
-                                    <option>Shop 8</option>
-                                    <option>Shop 9</option>
-                                    <option>Shop 10</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
                                 </Form.Control>
                             </Form.Group>
                             <Form.Group bsPrefix='group1'>
                                 <Form.Row>
-                                    <Form.Label>Units bought:</Form.Label>
+                                    <Form.Label>Quantity:</Form.Label>
                                     <Col>
-                                        <Form.Control as="select" name='ub1'>
-                                            <option>{'>'}</option>
-                                            <option>{'='}</option>
-                                            <option>{'<'}</option>
-                                        </Form.Control>
+                                        <FormControl placeholder='minimun quantity' name='ub1' />
                                     </Col>
                                     <Col>
-                                        <FormControl placeholder='Units Bought' name='ub2' />
+                                        <FormControl placeholder='maximum quantity' name='ub2' />
                                     </Col>
                                 </Form.Row>
                             </Form.Group>
                             <Form.Group bsPrefix='group1'>
                                 <Form.Row>
-                                    <Form.Label>Total amount:</Form.Label>
+                                    <Form.Label>Total Cost:</Form.Label>
                                     <Col>
-                                        <Form.Control as="select" name='ta1'>
-                                            <option>{'>'}</option>
-                                            <option>{'='}</option>
-                                            <option>{'<'}</option>
-                                        </Form.Control>
+                                        <FormControl placeholder='minimun cost' name='ta1' />
                                     </Col>
                                     <Col>
-                                        <FormControl placeholder='Total amount' name='ta2' />
+                                        <FormControl placeholder='maximum cost' name='ta2' />
                                     </Col>
                                 </Form.Row>
                             </Form.Group>
                             <Form.Group controlId="exampleForm.ControlSelect1" bsPrefix='category'>
                                 <Form.Label>Product Category</Form.Label>
                                 <Form.Control as="select" name='category'>
-                                    <option>Category #1</option>
-                                    <option>Category #2</option>
-                                    <option>Category #3</option>
-                                    <option>Category #4</option>
-                                    <option>Category #5</option>
+                                    <option>Προϊόντα Ψυγείου</option>
+                                    <option>Είδη Σπιτιού</option>
+                                    <option>Κάβα</option>
+                                    <option>Κατοικίδια</option>
+                                    <option>Φρέσκα Προϊόντα</option>
+                                    <option>Προσωπικής Περιποίησης</option>
                                 </Form.Control>
                             </Form.Group>
                             <Form.Group bsPrefix='group2'>
@@ -109,8 +124,8 @@ class BrowseTransctionData extends React.Component {
                         </Form.Label>
                                     <Col sm={10}>
                                         <Form.Control as="select" name='payment'>
-                                            <option>Card</option>
-                                            <option>Cash</option>
+                                            <option>card</option>
+                                            <option>cash</option>
                                         </Form.Control>
                                     </Col>
                                 </Form.Row>

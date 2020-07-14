@@ -17,13 +17,15 @@ class BrowseUsers extends React.Component {
     getUser = async (e) => {
         if (e) e.preventDefault();
         const user = e.target.elements.user.value;
+        const user2 = parseInt(user, 10);
         console.log('prin skata');
         const api_call = await fetch(`http://localhost:3000/users`,
             {
                 method: 'POST',
-                body: JSON.stringify({
-                    userid: user
-                })
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ tempcard: user })
             });
         console.log('skata');
         if (api_call.ok) {
@@ -50,14 +52,14 @@ class BrowseUsers extends React.Component {
                         <Form.Group controlId="exampleForm.ControlSelect1" bsPrefix='category'>
                             <Form.Label>Select User</Form.Label>
                             <Form.Control as="select" name='user'>
-                                <option>User 1</option>
-                                <option>User 2</option>
-                                <option>User 3</option>
-                                <option>User 4</option>
-                                <option>User 5</option>
-                                <option>User 6</option>
-                                <option>User 7</option>
-                                <option>User 8</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
                             </Form.Control>
                         </Form.Group>
                         <Button variant="success" bsPrefix='dropbtn' type="submit">Submit</Button>
