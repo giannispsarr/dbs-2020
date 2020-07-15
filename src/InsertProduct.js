@@ -20,11 +20,13 @@ class InsertProduct extends React.Component {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(
-                    { tempincate: category },
-                    { tempname: name },
-                    { templabel: label },
-                    { tempprice: ta2 },
-                    { tempbarc: id })
+                    {
+                        tempincate: `${category}`,
+                        tempname: `${name}`,
+                        templabel: `${label}`,
+                        tempprice: ta2,
+                        tempbarc: id
+                    })
             });
     }
 

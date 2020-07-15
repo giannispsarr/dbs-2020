@@ -7,7 +7,6 @@ import DataHandler from './DataHandler';
 import GeneralData from './GeneralData';
 import NavBar from './NavBar';
 import { Route, Link } from 'react-router-dom';
-import User_1 from './Users/User_1';
 import ClientHandler from './ClientHandler';
 import ProductHandler from './ProductHandler';
 import DataPerStore from './DataPerStore';
@@ -32,7 +31,6 @@ function App() {
       <Route exact path="/per_store" component={DataPerStore} />
       <Route exact path="/view1" component={View1} />
       <Route exact path="/view2" component={View2} />
-      <Route exact path="/users/user1" component={User_1} />
       <Route exact path="/data/client" component={ClientHandler} />
       <Route exact path="/data/client/insert" component={InsertClient} />
       <Route exact path="/data/client/update" component={UpdateClient} />

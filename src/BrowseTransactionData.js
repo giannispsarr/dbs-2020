@@ -39,34 +39,26 @@ class BrowseTransctionData extends React.Component {
         const tyear = e.target.elements.tyear.value;
         const mindate = `${fyear}-${fmonth}-${fday}`;
         const maxdate = `${tyear}-${tmonth}-${tday}`;
-        console.log(storeid);
-        console.log(minquan);
-        console.log(maxquan);
-        console.log(mintot_cost);
-        console.log(maxtot_cost);
-        console.log(tempcate);
-        console.log(payway);
-        console.log(mindate);
-        console.log(maxdate);
         const api_call = await fetch('http://localhost:3000/transactions',
             {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ storeid: storeid },
-                    { minquan: minquan },
-                    { maxquan: maxquan },
-                    { mintot_cost: mintot_cost },
-                    { maxtot_cost: maxtot_cost },
-                    { tempcate: tempcate },
-                    { payway: payway },
-                    { mindate: mindate },
-                    { maxdate: maxdate })
+                body: JSON.stringify({
+                    storeid: storeid,
+                    minquan: minquan,
+                    maxquan: maxquan,
+                    mintot_cost: mintot_cost,
+                    maxtot_cost: maxtot_cost,
+                    tempcate: `${tempcate}`,
+                    payway: `${payway}`,
+                    mindate: `${mindate}`,
+                    maxdate: `${maxdate}`
+                })
             });
         if (api_call.ok) {
             const data = await api_call.json();
-            console.log(data);
             const map1 = [];
             const map2 = [];
             const map3 = [];

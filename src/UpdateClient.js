@@ -22,13 +22,15 @@ class UpdateClient extends React.Component {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(
-                    { cardid: id },
-                    { tempupphone: phone },
-                    { tempupemail: email },
-                    { tempupstreet: street },
-                    { tempupcity: city },
-                    { tempupstnumber: number },
-                    { tempuppstcode: code })
+                    {
+                        cardid: id,
+                        tempupphone: phone,
+                        tempupemail: `${email}`,
+                        tempupstreet: `${street}`,
+                        tempupcity: `${city}`,
+                        tempupstnumber: number,
+                        tempuppstcode: code
+                    })
             });
     }
 

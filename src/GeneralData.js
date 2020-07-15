@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Col, Row, Button, Container } from 'react-bootstrap';
 import { Line, Pie, Bar, Doughnut } from 'react-chartjs-2';
+import Table from 'react-bootstrap/Table';
 import './GD.css';
 
 class GeneralData extends React.Component {
@@ -9,6 +10,10 @@ class GeneralData extends React.Component {
         barData1: {},
         barData2: {},
         barData3: {},
+        barData3: {},
+        cities: [],
+        products: [],
+        count: [],
         width: 500,
         height: 350
     }
@@ -18,7 +23,6 @@ class GeneralData extends React.Component {
         const api_call = await fetch(`http://localhost:3000/generaldata`);
         if (api_call.ok) {
             const data = await api_call.json();
-            console.log(data);
             const map1 = [];
             const map2 = [];
             const map3 = [];
@@ -54,7 +58,7 @@ class GeneralData extends React.Component {
             }
             for (let i = 0; i < data.query15b.length; i++) {
                 map10[i] = data.query15b[i].city;
-                map11[i] = data.query15b[i].barcode;
+                map11[i] = i;
                 map12[i] = data.query15b[i].name;
             }
             this.setState({
@@ -99,7 +103,25 @@ class GeneralData extends React.Component {
                         pointHoverBackgroundColor: 'rgba(3, 0, 4, 1)',
                         pointHoverBorderColor: 'rgba(3, 0, 4, 1)'
                     }]
-                }
+                },
+                barData4: {
+                    labels: map10,
+                    datasets: [{
+                        label: 'Most popular couples of products',
+                        data: map12,
+                        borderColor: 'rgba(3, 0, 4, 1)',
+                        borderDash: [20, 20],
+                        backgroundColor: 'rgb(89, 71, 167)',
+                        pointBackgroundColor: 'rgba(3, 0, 4, 1)',
+                        pointBorderColor: 'rgba(3, 0, 4, 1)',
+                        pointHoverBackgroundColor: 'rgba(3, 0, 4, 1)',
+                        pointHoverBorderColor: 'rgba(3, 0, 4, 1)'
+                    }]
+                },
+                cities: map10,
+                products: map12,
+                count: map11
+
             })
         }
     }
@@ -108,7 +130,17 @@ class GeneralData extends React.Component {
         this.getGeneralData();
     }
 
+    renderData = (index) => {
+        return (
+            <tr key={index}>
+                <td>{this.state.cities[index]}</td>
+                <td>{this.state.products[index]}</td>
+            </tr>
+        )
+    }
+
     render() {
+        let dataArray = this.state.count;
         return (
             <div>
                 < Container >
@@ -146,11 +178,17 @@ class GeneralData extends React.Component {
                                 }} />
                         </Col>
                         <Col>
-                            <Bar data={this.state.barData2} width={this.state.width} height={this.state.height}
-                                options={{
-                                    responsive: false,
-                                    maintainAspectRatio: false
-                                }} />
+                            <Table striped bordered hover responsive sm>
+                                <thead>
+                                    <tr>
+                                        <th>City</th>
+                                        <th>Product</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {dataArray.map(this.renderData)}
+                                </tbody>
+                            </Table>
                         </Col>
                     </Row>
                 </Container>

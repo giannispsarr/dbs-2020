@@ -4,7 +4,6 @@ import { Col, Row, FormControl, Container } from 'react-bootstrap';
 import { Line, Bar } from 'react-chartjs-2';
 import Button from 'react-bootstrap/Button';
 import { Route, Link, Redirect } from 'react-router-dom';
-import User_1 from './Users/User_1';
 import Form from 'react-bootstrap/Form';
 import './BU.css';
 import './GD.css';
@@ -30,7 +29,6 @@ class BrowseUsers extends React.Component {
         if (e) e.preventDefault();
         const user = e.target.elements.user.value;
         const user2 = parseInt(user, 10);
-        console.log(user2);
         const api_call = await fetch(`http://localhost:3000/users`,
             {
                 method: 'POST',
@@ -41,7 +39,6 @@ class BrowseUsers extends React.Component {
             });
         if (api_call.ok) {
             const data = await api_call.json();
-            console.log(data);
             const map1 = [];
             const map2 = [];
             const map3 = [];
@@ -111,7 +108,6 @@ class BrowseUsers extends React.Component {
                 }
             })
         }
-        console.log(user);
     }
 
     render() {

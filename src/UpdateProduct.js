@@ -17,8 +17,10 @@ class UpdateProduct extends React.Component {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(
-                    { updaprice: ta2 },
-                    { updabarc: id })
+                    {
+                        updaprice: ta2,
+                        updabarc: id
+                    })
             });
     }
 

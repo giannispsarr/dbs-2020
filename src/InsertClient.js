@@ -32,19 +32,21 @@ class InsertClient extends React.Component {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(
-                    { tempinssn: ssn },
-                    { tempincusfname: fname },
-                    { tempincuslname: lname },
-                    { tempincusstreet: street },
-                    { tempincusstnumber: number },
-                    { tempincuspstcode: code },
-                    { tempincuscity: city },
-                    { tempincusemail: email },
-                    { tempincusphone: phone },
-                    { tempincusbirthdate: birthdate },
-                    { tempincusgender: gender },
-                    { tempincusrewa: credits },
-                    { tempincusage: age })
+                    {
+                        tempinssn: ssn,
+                        tempincusfname: `${fname}`,
+                        tempincuslname: `${lname}`,
+                        tempincusstreet: `${street}`,
+                        tempincusstnumber: number,
+                        tempincuspstcode: code,
+                        tempincuscity: `${city}`,
+                        tempincusemail: `${email}`,
+                        tempincusphone: phone,
+                        tempincusbirthdate: `${birthdate}`,
+                        tempincusgender: `${gender}`,
+                        tempincusrewa: `${credits}`,
+                        tempincusage: age
+                    })
             });
     }
 

@@ -25,7 +25,6 @@ class View1 extends React.Component {
         const api_call = await fetch(`http://localhost:3000/viewcustomers`);
         if (api_call.ok) {
             const data = await api_call.json();
-            console.log(data);
             const map1 = [];
             const map2 = [];
             const map3 = [];
