@@ -11,6 +11,17 @@ import './Shop_1.css';
 
 class BrowseTransctionData extends React.Component {
 
+    state = {
+        name: [],
+        payment_way: [],
+        prcat: [],
+        stid: [],
+        timetransc: [],
+        total_cost: [],
+        total_quantity: [],
+        array: []
+    }
+
     getTransactionData = async (e) => {
         if (e) e.preventDefault();
         const storeid = parseInt(e.target.elements.shopid.value, 10);
@@ -35,12 +46,8 @@ class BrowseTransctionData extends React.Component {
         console.log(maxtot_cost);
         console.log(tempcate);
         console.log(payway);
-        console.log(fday);
-        console.log(fmonth);
-        console.log(fyear);
-        console.log(tday);
-        console.log(tmonth);
-        console.log(tyear);
+        console.log(mindate);
+        console.log(maxdate);
         const api_call = await fetch('http://localhost:3000/transactions',
             {
                 method: 'POST',
@@ -49,7 +56,7 @@ class BrowseTransctionData extends React.Component {
                 },
                 body: JSON.stringify({ storeid: storeid },
                     { minquan: minquan },
-                    { mixquan: maxquan },
+                    { maxquan: maxquan },
                     { mintot_cost: mintot_cost },
                     { maxtot_cost: maxtot_cost },
                     { tempcate: tempcate },
@@ -60,10 +67,53 @@ class BrowseTransctionData extends React.Component {
         if (api_call.ok) {
             const data = await api_call.json();
             console.log(data);
+            const map1 = [];
+            const map2 = [];
+            const map3 = [];
+            const map4 = [];
+            const map5 = [];
+            const map6 = [];
+            const map7 = [];
+            const map8 = [];
+            for (let i = 0; i < data.length; i++) {
+                map1[i] = data[i].name;
+                map2[i] = data[i].payment_way;
+                map3[i] = data[i].prcat;
+                map4[i] = data[i].stid;
+                map5[i] = data[i].timetransc;
+                map6[i] = data[i].total_cost;
+                map7[i] = data[i].total_quantity;
+                map8[i] = i;
+            }
+            this.setState({
+                name: map1,
+                payment_way: map2,
+                prcat: map3,
+                stid: map4,
+                timetransc: map5,
+                total_cost: map6,
+                total_quantity: map7,
+                array: map8
+            })
         }
     }
 
+    renderTransactions = (index) => {
+        return (
+            <tr key={index}>
+                <td>{this.state.name[index]}</td>
+                <td>{this.state.payment_way[index]}</td>
+                <td>{this.state.prcat[index]}</td>
+                <td>{this.state.stid[index]}</td>
+                <td>{this.state.timetransc[index]}</td>
+                <td>{this.state.total_cost[index]}</td>
+                <td>{this.state.total_quantity[index]}</td>
+            </tr>
+        )
+    }
+
     render() {
+        let transactionArray = this.state.array;
         return (
             <div>
                 <Row>
@@ -166,33 +216,20 @@ class BrowseTransctionData extends React.Component {
                         </Form>
                     </Col>
                     <Col>
-                        <Table striped bordered hover>
+                        <Table striped bordered hover responsive sm>
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Username</th>
+                                    <th>Product Name</th>
+                                    <th>Payment</th>
+                                    <th>Category</th>
+                                    <th>Store</th>
+                                    <th>Transaction Timestamp</th>
+                                    <th>Total Cost</th>
+                                    <th>Total quantity</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td colSpan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
+                                {transactionArray.map(this.renderTransactions)}
                             </tbody>
                         </Table>
                     </Col>

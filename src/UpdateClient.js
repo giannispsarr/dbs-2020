@@ -8,14 +8,28 @@ class UpdateClient extends React.Component {
 
     usrUpdate = async (e) => {
         if (e) e.preventDefault();
-        const shopid = e.target.elements.shopid.value;
-        const ta2 = e.target.elements.ta2.value;
+        const phone = e.target.elements.phone.value;
+        const email = e.target.elements.email.value;
         const id = e.target.elements.id.value;
-        const category = e.target.elements.category.value;
-        console.log(shopid);
-        console.log(ta2);
-        console.log(id);
-        console.log(category);
+        const city = e.target.elements.city.value;
+        const street = e.target.elements.street.value;
+        const number = e.target.elements.number.value;
+        const code = e.target.elements.code.value;
+        const api_call = await fetch('http://localhost:3000/editcustomer/update',
+            {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(
+                    { cardid: id },
+                    { tempupphone: phone },
+                    { tempupemail: email },
+                    { tempupstreet: street },
+                    { tempupcity: city },
+                    { tempupstnumber: number },
+                    { tempuppstcode: code })
+            });
     }
 
     render() {
@@ -34,9 +48,39 @@ class UpdateClient extends React.Component {
                             </Form.Group>
                             <Form.Group bsPrefix='group1'>
                                 <Form.Row>
-                                    <Form.Label>Username:</Form.Label>
+                                    <Form.Label>Phone:</Form.Label>
                                     <Col>
-                                        <FormControl placeholder='ex. Nick Papadopoulos' name='name' />
+                                        <FormControl placeholder='ex. 6988888888' name='phone' />
+                                    </Col>
+                                </Form.Row>
+                            </Form.Group>
+                            <Form.Group bsPrefix='group1'>
+                                <Form.Row>
+                                    <Form.Label>Email:</Form.Label>
+                                    <Col>
+                                        <FormControl placeholder='example@example.gr' name='email' />
+                                    </Col>
+                                </Form.Row>
+                            </Form.Group>
+                            <Form.Group bsPrefix='group1'>
+                                <Form.Row>
+                                    <Form.Label>City:</Form.Label>
+                                    <Col>
+                                        <FormControl placeholder='' name='city' />
+                                    </Col>
+                                    <Form.Label>Street:</Form.Label>
+                                    <Col>
+                                        <FormControl placeholder='' name='street' />
+                                    </Col>
+                                </Form.Row>
+                                <Form.Row>
+                                    <Form.Label>Number:</Form.Label>
+                                    <Col>
+                                        <FormControl placeholder='' name='number' />
+                                    </Col>
+                                    <Form.Label>Postal Code:</Form.Label>
+                                    <Col>
+                                        <FormControl placeholder='' name='code' />
                                     </Col>
                                 </Form.Row>
                             </Form.Group>

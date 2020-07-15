@@ -10,6 +10,15 @@ class DeleteClient extends React.Component {
         if (e) e.preventDefault();
         const id = e.target.elements.id.value;
         console.log(id);
+        const api_call = await fetch('http://localhost:3000/editcustomer/delete',
+            {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(
+                    { delcardid: id })
+            });
     }
 
     render() {
